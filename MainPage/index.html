@@ -17,10 +17,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <!-- [Application Title] -->
-    <title>App Builder</title>
+    <title>Irrigation Monitor</title>
 
     <!-- [Application Icon] -->
-    <link rel="icon" href="img/app-builder.png">
+    <link rel="icon" href="images/app-builder.png">
 
     <!-- [Bootstrap 4.3.1 CSS CDN] -->
     <link
@@ -32,9 +32,9 @@
 
     <!-- [jQuery 3.4.1 CDN] -->
     <script
-			  src="https://code.jquery.com/jquery-3.4.1.min.js"
-			  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-			  crossorigin="anonymous">
+	   src="https://code.jquery.com/jquery-3.4.1.min.js"
+	   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+	   crossorigin="anonymous">
     </script>
     <!-- [PopperJS 1.15.0 CDN] -->
     <script
@@ -51,6 +51,9 @@
     <!-- [Less.js 3.9.0 CDN] -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js" ></script>
 
+    <!-- [function.js] -->
+    <script src="js/function.js"></script>
+
   </head>
 
   <body>
@@ -59,9 +62,9 @@
               <h1 class="header" id="_appheader">
                   Automated Irrigation System Monitor v1.0
               </h1>
-              <h2 class="subheader" id="_groupheader">
+              <h4 class="subheader" id="_groupheader">
                   ElectroNEUterix
-              </h2>
+              </h4>
           </div>
       </div>
       <div class="wrapper">
@@ -75,6 +78,9 @@
                           <p class="sensor-data" id="_moisturedata1">
                               <!-- [Sensor data from planter 1 goes here...] -->
                           </p>
+                          <h5 class="sensor-text" id="_moisturedatatext1">
+                              <!-- [Sensor Text Counterpart Value] -->
+                          </h5>
                       </div>
                       <div class="col-xs-6 box">
                           <h3 class="sensor-label">
@@ -83,6 +89,9 @@
                           <p class="sensor-data" id="_moisturedata2">
                               <!-- [Sensor data from planter 2 goes here...] -->
                           </p>
+                          <h5 class="sensor-text" id="_moisturedatatext2">
+                              <!-- [Sensor Text Counterpart Value] -->
+                          </h5>
                       </div>
                       <div class="col-xs-6 box">
                           <h3 class="sensor-label">
@@ -91,14 +100,20 @@
                           <p class="sensor-data" id="_moisturedata3">
                               <!-- [Sensor data from planter 3 goes here...] -->
                           </p>
+                          <h5 class="sensor-text" id="_moisturedatatext3">
+                              <!-- [Sensor Text Counterpart Value] -->
+                          </h5>
                       </div>
                       <div class="col-xs-6 box">
                           <h3 class="sensor-label">
-                              Planter Box 3 Moisture:
+                              Planter Box 4 Moisture:
                           </h3>
                           <p class="sensor-data" id="_moisturedata4">
                               <!-- [Sensor data from planter 4 goes here...] -->
                           </p>
+                          <h5 class="sensor-text" id="_moisturedatatext4">
+                              <!-- [Sensor Text Counterpart Value] -->
+                          </h5>
                       </div>
                   </div>
               </div>
