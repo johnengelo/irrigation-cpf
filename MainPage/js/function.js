@@ -69,3 +69,9 @@ function sensor_cycle() {
     }
 
 }
+
+function setup(){
+    if(cpf){
+        cpf.setPinMode('["resetPin"],["setPinMode", "analog", 0, "INPUT"],["setPinMode", "analog", 1,"INPUT"],["setPinMode", "digital", 4,"INPUT"]');
+    }
+}
