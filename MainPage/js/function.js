@@ -1,71 +1,71 @@
-cpf.pinreset("[\"resetPin\"],[\"setPinMode\", \"analog\", 0,\"INPUT\"],[\"setPinMode\", \"analog\", 1,\"INPUT\"],[\"setPinMode\", \"analog\", 2,\"INPUT\"],[\"setPinMode\", \"analog\", 3,\"INPUT\"],[\"setPinMode\", \"digital\", 2,\"OUTPUT\"],[\"setPinMode\", \"digital\", 3,\"OUTPUT\"],[\"setPinMode\", \"digital\", 4,\"OUTPUT\"],[\"setPinMode\", \"digital\", 7,\"OUTPUT\"],[\"setPinMode\", \"digital\", 8,\"OUTPUT\"]");
+setup();
+/* [Variable Declarations] */
+var moisture_1 = document.getElementById("_moisturedata1");
+var moisture_2 = document.getElementById("_moisturedata2");
+var moisture_3 = document.getElementById("_moisturedata3");
+var moisture_4 = document.getElementById("_moisturedata4");
 
-cpf.uireset("[\"uiresetPin\"],[\"analog\", 0,\"INPUT\",\"Moisture Sensor\",\"img-moisture\"],[\"analog\", 1,\"INPUT\",\"Alcohol Sensor(A)\",\"img-alcohol\"],[\"analog\", 2,\"INPUT\",\"Light Sensor\",\"img-ext_lightsensor\"],[\"analog\", 3,\"INPUT\",\"Loudness Sensor\",\"img-loudness\"],[\"digital\", 2,\"OUTPUT\",\"SPDT Relay \",\"img-spdt_relay\"],[\"digital\", 3,\"OUTPUT\",\"SPDT Relay \",\"img-spdt_relay\"],[\"digital\", 4,\"OUTPUT\",\"SPDT Relay \",\"img-spdt_relay\"],[\"digital\", 7,\"OUTPUT\",\"SPDT Relay \",\"img-spdt_relay\"],[\"digital\", 8,\"OUTPUT\",\"SPDT Relay \",\"img-spdt_relay\"]");
+var mdt1 = document.getElementById("_moisturedatatext1");
+var mdt2 = document.getElementById("_moisturedatatext2");
+var mdt3 = document.getElementById("_moisturedatatext3");
+var mdt4 = document.getElementById("_moisturedatatext4");
 
-var Moisture1, Moisture2, Moisture3, Moisture4;
+var __moisturecpf1;
+var __moisturecpf2;
+var __moisturecpf3;
+var __moisturecpf4;
 
-function MoistureSensorGet() {
-  var MoistureSensorGetValue = cpf.get("A0");
-  ui.set("A0", MoistureSensorGetValue);
-  return  MoistureSensorGetValue;
+var __solenoidcpf1;
+var __solenoidcpf2;
+var __solenoidcpf3;
+var __solenoidcpf4;
+
+var tmp1 = true;
+var tmp2 = true;
+var tmp3 = true;
+var tmp4 = true;
+
+function sensor_cycle() {
+    if (cpf) {
+        /* Moisture Sensor Variables */
+        __moisturecpf1 = cpf.get("a0");
+        __moisturecpf2 = cpf.get("a1");
+        __moisturecpf3 = cpf.get("a2");
+        __moisturecpf4 = cpf.get("a3");
+        /* Solenoid Variables */
+        __solenoidcpf1 = cpf.get("D2");
+        __solenoidcpf2 = cpf.get("D3");
+        __solenoidcpf3 = cpf.get("D4");
+        __solenoidcpf4 = cpf.get("D7");
+        /* index.html placeholder texts (to be replaced by data from cpf) */
+        document.getElementById("_moisturedata1").innerHTML = __moisturecpf1;
+        document.getElementById("_moisturedata2").innerHTML = __moisturecpf2;
+        document.getElementById("_moisturedata3").innerHTML = __moisturecpf3;
+        document.getElementById("_moisturedata4").innerHTML = __moisturecpf4;
+
+        function SDT(x,y,z) {
+            if (x <= 670 && tmp1) {
+                // Wet
+                y = "I'm currently wet and fine for now!";
+                z = false;
+            }
+            else if (x <= 720 && x >= 671 && tmp1) {
+                // Moist
+                y = "I'm now moist and starting to dry up.";
+                z = false;
+            }
+            else if (x >= 721 && tmp1) {
+                // Dry
+                y = "I'm dry and need to be watered.";
+                z = true;
+            }
+        }
+
+        SDT(__moisturecpf1, mdt1, __solenoidcpf1);
+        SDT(__moisturecpf2, mdt2, __solenoidcpf2);
+        SDT(__moisturecpf3, mdt3, __solenoidcpf3);
+        SDT(__moisturecpf4, mdt4, __solenoidcpf4);
+
+    }
+
 }
-
-function ALACOHOL_Sensor_Get() {
-  var ALACOHOL_Sensor_GetValue = cpf.get("A1");
-  ui.set("A1", ALACOHOL_Sensor_GetValue);
-  return  ALACOHOL_Sensor_GetValue;
-}
-
-function LightSensorGet() {
-  var LightSensorGetValue = cpf.get("A2");
-  ui.set("A2", LightSensorGetValue);
-  return  LightSensorGetValue;
-}
-
-function LoundnessSensorGet() {
-  var LoundnessSensorGetValue = cpf.get("A3");
-  ui.set("A3", LoundnessSensorGetValue);
-  return  LoundnessSensorGetValue;
-}
-
-
-
-  Moisture1 = MoistureSensorGet();
-  Moisture2 = ALACOHOL_Sensor_Get();
-  Moisture3 = LightSensorGet();
-  Moisture4 = LoundnessSensorGet();
-  ui.set("title",'electroNEUterix');
-  if (Moisture1 >= 0 && Moisture1 <= 650) {
-    cpf.set("D2",1);
-    ui.set("D2",1);
-    cpf.set("D3",1);
-    ui.set("D3",1);
-  } else {
-    cpf.set("D2",0);
-    ui.set("D2",0);
-    cpf.set("D3",0);
-    ui.set("D3",0);
-  }
-  if (Moisture2 >= 0 && Moisture2 <= 650) {
-    cpf.set("D4",1);
-    ui.set("D4",1);
-  } else {
-    cpf.set("D4",0);
-    ui.set("D4",0);
-  }
-  if (Moisture3 >= 0 && Moisture3 <= 650) {
-    cpf.set("D7",1);
-    ui.set("D7",1);
-  } else {
-    cpf.set("D7",0);
-    ui.set("D7",0);
-  }
-  if (Moisture4 >= 0 && Moisture4 <= 650) {
-    cpf.set("D8",1);
-    ui.set("D8",1);
-  } else {
-    cpf.set("D8",0);
-    ui.set("D8",0);
-  }
-
-cpf.repeat();
