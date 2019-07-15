@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css?family=Hind|Open+Sans&display=swap');
+
+body {
+    background-color: #244D77;
+    background-size: cover;
+    background-repeat: repeat;
+}
+
+.navbar {
+    background-color: #142942;
+}
+
+.nav {
+    color: #50CBD1;
+}
+
+#_mainsection {
+    padding-top: 2.5rem;
+}
+
+.box {
+    background-color: #09141E;
+    border-radius: 5px;
+    color: #50CBD1;
+    height: 11rem;
+}
+
+.fa-pagelines {
+    font-size: 2rem;
+    color: #50CBD1;
+}
+
+.sensor-label {
+    border: 2px solid #397ABC;
+    border-radius: 5px;
+    background-color: #397ABC;
+    color: white;
+    font-family: 'Squada One', sans-serif;
+}
